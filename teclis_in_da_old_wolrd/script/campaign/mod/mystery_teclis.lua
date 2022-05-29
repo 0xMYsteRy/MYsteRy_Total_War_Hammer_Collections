@@ -15,6 +15,8 @@ function mystery_teclis()
             -- Grant Teclis extra units
             local order_of_loremasters_faction_obj = cm:get_faction("wh2_main_hef_order_of_loremasters");
 			local order_of_loremasters_faction_leader_cqi = order_of_loremasters_faction_obj:faction_leader():command_queue_index();
+            
+            -- Add 2 Swordmasters & 1 Arcane-phoenix
 			cm:grant_unit_to_character(cm:char_lookup_str(order_of_loremasters_faction_leader_cqi), "wh2_main_hef_inf_swordmasters_of_hoeth_0")
             cm:grant_unit_to_character(cm:char_lookup_str(order_of_loremasters_faction_leader_cqi), "wh2_main_hef_inf_swordmasters_of_hoeth_0")
 			cm:grant_unit_to_character(cm:char_lookup_str(order_of_loremasters_faction_leader_cqi), "wh2_dlc15_hef_mon_arcane_phoenix_0")
@@ -22,6 +24,16 @@ function mystery_teclis()
             -- Transfer region to Teclis faction
             cm:transfer_region_to_faction("wh_main_western_border_princes_zvorak", "wh2_main_hef_order_of_loremasters");
             
+            -- Transfer region to Chrace faction
+            cm:transfer_region_to_faction("wh_main_the_vaults_zarakzil", "wh2_main_hef_chrace");
+             
+            -- Upgrade Oldworld Teclis settlement to level 3
+            local teclis_zvorak_region = cm:model():world():region_manager():region_by_key("wh_main_western_border_princes_zvorak")
+			cm:instantly_set_settlement_primary_slot_level(teclis_zvorak_region:settlement(), 3)
+            
+            -- Upgrade Oldworld Chrace settlement to level 3
+            local chrace_zvorak_region = cm:model():world():region_manager():region_by_key("wh_main_the_vaults_zarakzil")
+			cm:instantly_set_settlement_primary_slot_level(chrace_zvorak_region:settlement(), 3)
             
             -- @param faction key
             --          faction key from "faction" table
@@ -47,40 +59,45 @@ function mystery_teclis()
             --          Othername id
             -- @param make faction leader
             --          false to not set as faction leader
-            -- wh2_main_hef_order_of_loremasters
+            
+            -- Check HE id name table with number 137 only, others number won't work
              cm:create_force_with_general(
 					"wh2_main_hef_order_of_loremasters", --Create Teclis home region sodier
 					"wh2_main_hef_inf_lothern_sea_guard_0,wh2_main_hef_inf_lothern_sea_guard_0, wh2_main_hef_inf_swordmasters_of_hoeth_0, wh2_main_hef_inf_swordmasters_of_hoeth_0",
 					"wh_main_western_border_princes_zvorak",
-					150,
+					570,
 					300,
 					"general",
 					"wh2_main_hef_prince",
-					"names_name_999982295",
+					"names_name_1197705717",
 					"",
-					"Teclis Follower",
+					"names_name_1218191473",
 					"",
 					false,
+                    function(cqi)
+						cm:apply_effect_bundle_to_characters_force("wh2_main_sr_fervour", cqi, 25, true)
+					end
 				)
             
              cm:create_force_with_general(
 					"wh2_main_hef_chrace",
-					"wh2_main_hef_inf_lothern_sea_guard_0,wh2_main_hef_inf_lothern_sea_guard_0, wh2_main_hef_inf_white_lions_of_chrace_0, wh2_main_hef_inf_white_lions_of_chrace_0, wh2_main_hef_mon_phoenix_frostheart",
-					"wh_main_western_border_princes_zvorak",
-					550,
-					300,
+					"wh2_main_hef_inf_lothern_sea_guard_0,wh2_main_hef_inf_lothern_sea_guard_0, wh2_main_hef_inf_white_lions_of_chrace_0,wh2_main_hef_inf_lothern_sea_guard_0, wh2_main_hef_mon_phoenix_frostheart",
+					"wh_main_the_vaults_zarakzil",
+					500,
+					260,
 					"general",
 					"wh2_main_hef_prince_alastar",
-					"names_name_999982296",
+					"names_name_1226152662",
 					"",
-					"names_name_1225535785",
+					"names_name_1254391153",
 					"",
 					false,
 					function(cqi)
 						cm:apply_effect_bundle_to_characters_force("wh2_main_sr_fervour", cqi, 25, true)
 					end
 				)
-            
+             
+             
         end
     end
 end
