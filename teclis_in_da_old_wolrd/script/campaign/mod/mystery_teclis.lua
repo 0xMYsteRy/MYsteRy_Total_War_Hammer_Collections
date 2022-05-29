@@ -60,44 +60,45 @@ function mystery_teclis()
             -- @param make faction leader
             --          false to not set as faction leader
             
-            -- Check HE id name table with number 137 only, others number won't work
-             cm:create_force_with_general(
-					"wh2_main_hef_order_of_loremasters", --Create Teclis home region sodier
-					"wh2_main_hef_inf_lothern_sea_guard_0,wh2_main_hef_inf_lothern_sea_guard_0, wh2_main_hef_inf_swordmasters_of_hoeth_0, wh2_main_hef_inf_swordmasters_of_hoeth_0",
+            -- Check HE id name table with number 137 only, others number won't work. (x, y) = (560, 300), no space between force creation
+            -- Create Teclis home region sodier
+            cm:create_force_with_general(
+					"wh2_main_hef_order_of_loremasters", 
+					"wh2_main_hef_inf_lothern_sea_guard_0,wh2_main_hef_inf_swordmasters_of_hoeth_0,wh2_main_hef_inf_lothern_sea_guard_0,wh2_main_hef_inf_swordmasters_of_hoeth_0",
 					"wh_main_western_border_princes_zvorak",
-					570,
-					300,
+					242,
+					70,
 					"general",
 					"wh2_main_hef_prince",
 					"names_name_1197705717",
 					"",
-					"names_name_1218191473",
+					"",
 					"",
 					false,
                     function(cqi)
 						cm:apply_effect_bundle_to_characters_force("wh2_main_sr_fervour", cqi, 25, true)
 					end
-				)
+				);
             
-             cm:create_force_with_general(
+            cm:create_force_with_general(
 					"wh2_main_hef_chrace",
-					"wh2_main_hef_inf_lothern_sea_guard_0,wh2_main_hef_inf_lothern_sea_guard_0, wh2_main_hef_inf_white_lions_of_chrace_0,wh2_main_hef_inf_lothern_sea_guard_0, wh2_main_hef_mon_phoenix_frostheart",
+					"wh2_main_hef_inf_white_lions_of_chrace_0,wh2_main_hef_art_eagle_claw_bolt_thrower,wh2_main_hef_inf_spearmen_0,wh2_main_hef_inf_lothern_sea_guard_0, wh2_main_hef_mon_phoenix_frostheart,wh2_dlc10_hef_inf_shadow_walkers_0,wh2_main_hef_inf_gate_guard,wh2_main_hef_cav_dragon_princes",
 					"wh_main_the_vaults_zarakzil",
-					500,
-					260,
+					510,
+					265,
 					"general",
 					"wh2_main_hef_prince_alastar",
 					"names_name_1226152662",
 					"",
-					"names_name_1254391153",
+					"",
 					"",
 					false,
 					function(cqi)
 						cm:apply_effect_bundle_to_characters_force("wh2_main_sr_fervour", cqi, 25, true)
 					end
-				)
+				);
              
-             
+            
         end
     end
 end
